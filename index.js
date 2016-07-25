@@ -1,6 +1,7 @@
 var express = require('express');
 var mongodb = require('mongodb');
 var app = express();
+var md5=require('md5');
 
 var mongodbURL = 'mongodb://jean4445jean4445:jean4445@ds011705.mlab.com:11705/userinformation';
 
@@ -36,7 +37,7 @@ app.get('/api/test', function(request, response) {
 
 app.get('/api/insert', function(request, response) {
 	var item = {
-		name:request.query.name,
+    name:request.query.name,
 	account:request.query.account,
 	password:md5(request.query.password),
 	sex:request.query.sex,

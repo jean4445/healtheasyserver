@@ -5,6 +5,7 @@
   "dependencies" : {
     "express"    : "*",
     "mongodb"   : "*",
-    "moment" 	: "*"
+    "moment" 	: "*",
+	"md5"       : "^2.0.0"
   }
 }
