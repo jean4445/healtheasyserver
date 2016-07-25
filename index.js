@@ -23,8 +23,8 @@ app.get('/api/test', function(request, response) {
 	var collection = myDB.collection('user_data');
 	collection.find({}).toArray(function(err, docs) {
 		if (err) {
-			response.status(406).send(err);
-			response.end();
+			response.status(406).end();
+			
 		} else {
 			response.type('application/json');
 			response.status(200).send(docs);
@@ -33,4 +33,4 @@ app.get('/api/test', function(request, response) {
 	})
 });
 
-app.listen(5000);
+app.listen(process.env.PORT||5000);
