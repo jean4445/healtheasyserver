@@ -20,6 +20,7 @@ app.get('/', function(request, response) {
 });
 
 app.get('/api/test', function(request, response) {
+	
 	var collection = myDB.collection('user_data');
 	collection.find({}).toArray(function(err, docs) {
 		if (err) {
@@ -31,6 +32,29 @@ app.get('/api/test', function(request, response) {
 			response.end();
 		}
 	})
+});
+
+app.get('/api/insert', function(request, response) {
+	var item = {
+		name:request.query.name,
+	account:request.query.account,
+	password:md5(request.query.password),
+	sex:request.query.sex,
+	birthday:request.query.birthday,
+	height:request.query.height,
+	weight:request.query.weight,
+	email:request.query.email,
+	phone:request.query.phone
+	}
+	var collection = myDB.collection('user_data');
+	collection.insert(item, function(err, result) {
+		if (err) {
+			response.status(406).send(err).end();
+		} else {
+			response.type('application/json');
+			response.status(200).send(result).end();
+		}
+	});
 });
 
 app.listen(process.env.PORT||5000);
